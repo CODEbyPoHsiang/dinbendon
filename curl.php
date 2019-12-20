@@ -29,37 +29,28 @@ curl_setopt_array($curl, array(
 CURLOPT_COOKIE => "_ga=GA1.2.1046945946.1576548924; _gid=GA1.2.1708859978.1576548924; signIn.rememberMe=true; INDIVIDUAL_KEY=130469d0-5adb-4c00-9621-dd9493c4830a; JSESSIONID=05EE57DEAA2ED369AD95C16FA26B317E; signInPanel__signInForm__username=BBinMobile; signInPanel__signInForm__password=nITbJKzP0p2p7sTSaxh79Q%3D%3D",
   // CURLOPT_COOKIEJAR =>"Cookie",
 ));
-curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);//忽略ssl認證
 $html = curl_exec($curl);
 curl_close($curl);
 ////顯示爬出的含html格式的網頁
 //  echo $html;
 
-// // preg_match以陣列方式把這標籤包含的字串，只會抓出指定標籤第一筆
+// // preg_match以陣列方式把這標籤包含的資料抓出來，但只會抓出指定標籤第一筆
 //   $IsMatch= preg_match('/<span>(.*)<\/span>/', $html, $match);
 //   if( $IsMatch ){
 //   print_r ($match[0]) . "\n." ;
 //   }
 
-
-// //preg_match_all以陣列方式把這標籤包含的字串全部抓出來
+// //preg_match_all以陣列方式把這標籤包含的資料全部抓出來
 //   $IsMatch= preg_match_all('/><a href="(.*)"><span>(.*)<\/span></U', $html, $match);
 //   if( $IsMatch ){
 //   print_r ($match[0]) . "\n." ;
 //   }
 
-  // foreach跑出全部標籤為<td ><a href="(.*)"><span>(.*)<\/span><\/a>的資料
-  //做正規表示法，要特別注意函數內過濾的標籤顏色，要注意斜線跟反斜線的運用，若提示顏色沒變化，則可能是正規表示法操作錯誤
-  preg_match_all('/\<td ><a href="(.*)"><span>(.*)<\/span><\/a>/U', $html, $match);
-  foreach ($match[0] as $key => $stores) {
-    echo  strip_tags ($stores)."\n"."</br>";
-  }
-　
-   echo "<br>".'爬蟲結束時間:'.date("Y-m-d H:i:s",(time()+時差*3600)); 
 
  
 // //逐一印出徒法煉鋼方式，把需要印出來即可(這個會把全部<span>標籤全部抓近來)
-//這個步驟的缺點，因為是寫死的，若別的區域用到要抓的標籤，這樣值就不對了
+//這個作法的缺點，因為是寫死的，若別的區域用到要抓的標籤，這樣值就不對了
 //   preg_match_all('/<span>(.*)<\/span>/', $html, $match);
 //   echo "最新公用店家";
 //   echo "<hr>"; 
@@ -78,4 +69,16 @@ curl_close($curl);
 //     print_r ($match[0][6]). "\n.";
 //     echo "<hr>"; 
 //     echo "<br>".'爬蟲結束時間:'.date("d-m-Y H:i:s"); 
+
+
+//目前運行做法:
+// foreach跑出全部標籤為<td ><a href="(.*)"><span>(.*)<\/span><\/a>的資料
+//要特別注意preg_match_all()內過濾的標籤顏色，要注意斜線跟反斜線的運用，若提示顏色在vscode提示沒變化，則可能是正規表示法操作錯誤
+//利用strip_tags將獲取的資料處理轉成字串
+preg_match_all('/\<td ><a href="(.*)"><span>(.*)<\/span><\/a>/U', $html, $match);
+foreach ($match[0] as $key => $stores) {
+  echo  strip_tags ($stores)."\n"."</br>";
+}
+ echo "<br>".'爬蟲結束時間:'.date("Y-m-d H:i:s",(time()+時差*3600)); 
+
 
