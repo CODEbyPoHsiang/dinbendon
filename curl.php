@@ -61,7 +61,7 @@ curl_close($curl);
   foreach ($match[0] as $key => $stores) {
     echo  strip_tags ($stores)."\n"."</br>";
   }
-   echo "<br>".'爬蟲結束時間:'.date("d-m-Y H:i:s"); 
+   echo "<br>".'爬蟲結束時間:'.date("Y-m-d H:i:s",(time()+時差*3600)); 
 
  
 // //逐一印出徒法煉鋼方式，把需要印出來即可(這個會把全部<span>標籤全部抓近來)
