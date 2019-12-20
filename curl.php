@@ -61,6 +61,9 @@ curl_close($curl);
   foreach ($match[0] as $key => $stores) {
     echo  strip_tags ($stores)."\n"."</br>";
   }
+　　　　date_default_timezone_set('Asia/Taipei');
+　　　echo date("Y-m-d H:i:s");
+
    echo "<br>".'爬蟲結束時間:'.date("Y-m-d H:i:s",(time()+時差*3600)); 
 
  
