@@ -32,44 +32,6 @@ CURLOPT_COOKIE => "_ga=GA1.2.1046945946.1576548924; _gid=GA1.2.1708859978.157654
 curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);//忽略ssl認證
 $html = curl_exec($curl);
 curl_close($curl);
-////顯示爬出的含html格式的網頁
-//  echo $html;
-
-// // preg_match以陣列方式把這標籤包含的資料抓出來，但只會抓出指定標籤第一筆
-//   $IsMatch= preg_match('/<span>(.*)<\/span>/', $html, $match);
-//   if( $IsMatch ){
-//   print_r ($match[0]) . "\n." ;
-//   }
-
-// //preg_match_all以陣列方式把這標籤包含的資料全部抓出來
-//   $IsMatch= preg_match_all('/><a href="(.*)"><span>(.*)<\/span></U', $html, $match);
-//   if( $IsMatch ){
-//   print_r ($match[0]) . "\n." ;
-//   }
-
-
- 
-// //逐一印出徒法煉鋼方式，把需要印出來即可(這個會把全部<span>標籤全部抓近來)
-//這個作法的缺點，因為是寫死的，若別的區域用到要抓的標籤，這樣值就不對了
-//   preg_match_all('/<span>(.*)<\/span>/', $html, $match);
-//   echo "最新公用店家";
-//   echo "<hr>"; 
-//     print_r ($match[0][0]). "\n.";
-//     echo "</br>";
-//     print_r ($match[0][1]). "\n.";
-//     echo "</br>";
-//     print_r ($match[0][2]). "\n.";
-//     echo "</br>";
-//     print_r ($match[0][3]). "\n.";
-//     echo "</br>";
-//     print_r ($match[0][4]). "\n.";
-//     echo "</br>";
-//     print_r ($match[0][5]). "\n.";
-//     echo "</br>";
-//     print_r ($match[0][6]). "\n.";
-//     echo "<hr>"; 
-//     echo "<br>".'爬蟲結束時間:'.date("d-m-Y H:i:s"); 
-
 
 //目前運行做法:
 // foreach跑出全部標籤為<td ><a href="(.*)"><span>(.*)<\/span><\/a>的資料
