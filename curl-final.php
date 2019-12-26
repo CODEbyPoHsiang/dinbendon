@@ -1,14 +1,7 @@
-
-<script>
-<a href="#" onclick="javascript:window.location.reload()">重新整理</a>
-</script>
-
-
-
 <?php
-// $headers[] = "Accept: */*";  
-// $headers[] = "Connection: Keep-Alive";  
-// $headers[] = "Content-type: application/x-www-form-urlencoded;charset=UTF-8"; 
+$headers[] = "Accept: */*";  
+$headers[] = "Connection: Keep-Alive";  
+$headers[] = "Content-type: application/x-www-form-urlencoded;charset=UTF-8"; 
 
 
 //(1.)抓出驗證碼的總和及post會變動的網址t串===========================================================================================
@@ -76,13 +69,15 @@ foreach ($match[0] as $key => $store) {
 }
   echo "<br>".'爬蟲結束時間:'.date("Y-m-d H:i:s",(time()+8*3600))."<br>"; //(time()+8*3600)是改成台灣時間
   echo "<hr>";
+
+//(4.)爬出來的資料寫進資料庫中===========================================================================================
 // 建立MySQL的資料庫連接 
 echo "資料庫連接開始"."....."."<br>";
 $link = mysqli_connect("localhost","root","","db")
         or die("無法開啟MySQL資料庫連接!<br/>");
 echo "MySQL資料庫開啟成功!<br/>";
 
-mysqli_query($link,'TRUNCATE TABLE stores');//先清空資料表
+mysqli_query($link,'TRUNCATE TABLE stores');//清空資料表
 
 $a = $match[0];//若直接讀取($store)變數值只會寫入最後一筆資料，需要用for迴圈跑
 for ($i=0;$i<8;$i++)//最新店家有8筆，故預設$i<8
@@ -92,8 +87,8 @@ for ($i=0;$i<8;$i++)//最新店家有8筆，故預設$i<8
 
 $sql = "INSERT INTO `stores`(`name`) VALUES(".implode ( $sqldata).")" 
       or die("寫入失敗!");
-    echo "SQL字串:".$sql ."<br>"."已成功寫入資料庫";
-    //送出UTF8編碼的MySQL指令
+echo "SQL字串:".$sql ."<br>"."已成功寫入資料庫";
+  
 mysqli_query($link, 'SET NAMES utf8'); 
 mysqli_query($link, $sql);
 mysqli_close($link);
