@@ -72,23 +72,23 @@ foreach ($match[0] as $key => $store) {
 
 //(4.)爬出來的資料寫進資料庫中===========================================================================================
 // 建立MySQL的資料庫連接 
-echo "資料庫連接開始"."....."."<br>";
+
 $link = mysqli_connect("localhost","root","","db")
         or die("無法開啟MySQL資料庫連接!<br/>");
+echo "資料庫連接開始"."....."."<br>";
 echo "MySQL資料庫開啟成功!<br/>";
 
 mysqli_query($link,'TRUNCATE TABLE stores');//清空資料表
 
-$a = $match[0];//若直接讀取($store)變數值只會寫入最後一筆資料，需要用for迴圈跑
+$a = $match[0];//若直接讀取($store)變數值只會寫入最後一筆資料，需要用for迴圈
 for ($i=0;$i<8;$i++)//最新店家有8筆，故預設$i<8
 {
  $sqldata[] = "('".strip_tags($a[$i])."')";
 }
 
 $sql = "INSERT INTO `stores`(`name`) VALUES(".implode ( $sqldata).")" 
-      or die("寫入失敗!");
+        or die("寫入失敗!");
 echo "SQL字串:".$sql ."<br>"."已成功寫入資料庫";
-  
 mysqli_query($link, 'SET NAMES utf8'); 
 mysqli_query($link, $sql);
 mysqli_close($link);
