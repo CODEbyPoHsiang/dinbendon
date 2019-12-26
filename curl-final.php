@@ -4,7 +4,7 @@ $headers[] = "Connection: Keep-Alive";
 $headers[] = "Content-type: application/x-www-form-urlencoded;charset=UTF-8"; 
 
 
-//(1.)抓出驗證碼的總和及post會變動的網址t串===========================================================================================
+//(1.)抓出驗證碼的總和及post會變動的網址串===========================================================================================
 $cookie =  dirname(__FILE__)."/cookie.txt";//把cookie存起來
 $login_url = "https://dinbendon.net/do/login";
 $curl= curl_init();
