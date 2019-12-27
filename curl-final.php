@@ -72,6 +72,30 @@ foreach ($match[0] as $key => $store) {
 
 //連接資料庫
   require_once './curl-db.php';
+
+$conn->query("TRUNCATE TABLE stores");//清空資料表
+// mysqli_query($db,'TRUNCATE TABLE stores');
+$a= $match[0];//若直接讀取($store)變數值只會寫入最後一筆資料，需要用for迴圈跑
+for ($i=0;$i<count($a);$i++)
+{
+ $sqldata[] = "('".strip_tags($a[$i])."')";
+}
+$sql  = "INSERT INTO `stores` (`name`) VALUES(".implode ('),(', $sqldata).")";
+
+// 
+try
+{
+  $conn->query($sql);
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  echo "資料已成功寫入資料庫"."<br>";
+  echo "<br>".'資料寫入時間:'.date("Y-m-d H:i:s",(time()+8*3600))."<br>";
+}
+catch(PDOException $e)
+{
+echo "資料寫入資料庫失敗: ".$e->getMessage();
+}
+$conn = NULL;
+
 ?>
 
 
