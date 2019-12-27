@@ -41,6 +41,6 @@ preg_match_all('/\<td ><a href="(.*)"><span>(.*)<\/span><\/a>/U', $html, $match)
 foreach ($match[0] as $key => $stores) {
   echo  strip_tags ($stores)."\n"."</br>";
 }
- echo "<br>".'爬蟲結束時間:'.date("Y-m-d H:i:s",(time()+時差*3600)); 
+ echo "<br>".'爬蟲結束時間:'.date("Y-m-d H:i:s",(time()+8*3600)); 
 
 
