@@ -27,7 +27,7 @@ $a=$ma[1];
 //(2.)模擬提交表單//(把每次變更的網址串$a帶進來)===========================================================================================
 $posturl = "https://dinbendon.net$a";
 //要提交的資料//(把每次變更的認證碼總和$code帶進來)
-$post = "signInPanel_signInForm%3Ahf%3A0=&username=BBinMobile&password=BBinMobile&result=$code&submit=%E7%99%BB%E5%85%A5";
+$post = "signInPanel_signInForm%3Ahf%3A0=&username=guest&password=guest&result=$code&submit=%E7%99%BB%E5%85%A5";
 $curl = curl_init();
 curl_setopt($curl, CURLOPT_URL, $posturl);
 curl_setopt($curl, CURLOPT_HEADER, false);
