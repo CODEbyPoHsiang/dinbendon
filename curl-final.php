@@ -84,6 +84,10 @@ try
     $conn->exec("SET CHARACTER SET utf8");
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     echo "連接資料庫成功"."<br>";
+    $conn->query($sql);
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  echo "資料已成功寫入資料庫"."<br>";
+  echo "<br>".'資料寫入時間:'.date("Y-m-d H:i:s",(time()+8*3600))."<br>";  
 }
 catch(PDOException $e)
 {
