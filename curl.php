@@ -1,5 +1,5 @@
 <?php
-
+//此方法是直接把獲取的cookie寫在程式碼內
 //初始化curl環境
 $curl = curl_init();
 curl_setopt_array($curl, array(
