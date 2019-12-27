@@ -45,7 +45,7 @@ curl_exec($curl);
 curl_close($curl);
 
 
-//(3.)開始爬登入之後網頁的資料，並用正規表示法條件篩選出要的文字==========================================================================
+//(3.)開始爬登入之後網頁的資料，並用正規表示法比對條件篩選出要的資料==========================================================================
 $data_url = "https://dinbendon.net/do"; //爬出登入後資料的網址
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $data_url);
@@ -57,9 +57,7 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
 curl_setopt($ch, CURLOPT_COOKIEFILE, $cookie);
 $data = curl_exec($ch);
 curl_close($ch);
-// echo ($data);//印出登入後的頁面
-
-echo "<hr>";
+// echo ($data);//印出登入後的全部頁面
 
 //利用正規表示比對把要的新增店家欄位取出來
 preg_match_all('/\<td ><a href="(.*)"><span>(.*)<\/span><\/a>/U', $data, $match);
